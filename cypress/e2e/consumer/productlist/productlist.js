@@ -1,33 +1,20 @@
 import {Given,When,Then} from "cypress-cucumber-preprocessor/steps";
 
 before(()=>{
-    cy.homePage();
+  cy.visit('https://www.demoblaze.com/');
 })
 
-const category = "SaaS"
-const product = ["TreeLine","DocHub"]
 
-    Given("the Service menu is visible",()=>{
-        cy.mouseHover('Service')
-        cy.checkSubCategory(category)
+    Given("user in home page",()=>{
+      cy.get('a[id="itemc"]').contains('Laptops').click()
     })
 
-    When("user clicks on SaaS sub-category",()=>{
-        cy.checkSubCategory(category).click().wait(5000)
+    When("click phone",()=>{
+      cy.get('a[class="hrefch"]').contains('MacBook air').click()
     })
 
-    Then("user should be able to view products in the SaaS landing page",()=>{
-        cy.productListedInSubCat(category)
+    Then("add to cart",()=>{
+      cy.get('a').contains('Add to cart',{timeout:5000}).click()
+      cy.get('a').contains('Home').click()
     })
     
-    Given("user is in SaaS landing page",()=>{
-        cy.verifyLandingPage(category)
-    })
-    When("user clicks on Explore All",()=>{
-        cy.exploreAll()
-    })
-    Then("user should be able to view all the products which belongs to SaaS sub-category",()=>{
-        product.forEach((product)=>{
-            cy.checkListing(category,product)
-        })
-    })
