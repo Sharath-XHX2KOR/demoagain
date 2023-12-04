@@ -4,7 +4,6 @@
   "description": "Automation testing",
   "main": "index.js",
   "scripts": {
-
     "qa": "npx cypress run --env = qa --browser ${BROWSER}",
     "dev": "npx cypress run --env = dev --browser ${BROWSER}",
     "cleanup": "node cleanup-report.js"
@@ -31,6 +30,8 @@
   "devDependencies": {
     "eslint": "^8.51.0",
     "eslint-plugin-cucumber": "^2.0.0",
-    "eslint-plugin-cypress": "^2.14.0"
+    "eslint-plugin-cypress": "^2.14.0",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0"
   }
 }
