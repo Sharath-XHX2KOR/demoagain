@@ -1,6 +1,6 @@
 //set up project configuration in this file
 const cucumber = require('cypress-cucumber-preprocessor').default
-const report = require('mochawesome');
+const report = require('mochawesome/reporter');
 const { defineConfig } = require("cypress");
 const fs = require('fs-extra');
 const path = require("path");
