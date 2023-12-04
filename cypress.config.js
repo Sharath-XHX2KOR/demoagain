@@ -1,6 +1,6 @@
 //set up project configuration in this file
 const cucumber = require('cypress-cucumber-preprocessor').default
-const report = require('mochawesome-report-generator');
+const report = require('mochawesome/mochawesome-report-generator');
 const { defineConfig } = require("cypress");
 const fs = require('fs-extra');
 const path = require("path");
@@ -15,7 +15,7 @@ module.exports = defineConfig({
     setupNodeEvents (on, config) {
       on('after:run', () => {
         report.generate({
-          jsonDir: 'cypress/reports/cucumber-json',//path of json file
+          jsonDir: 'cypress/reports/features',//path of json file
           reportPath: 'cypress/reports'// path of reports
         });
       });
