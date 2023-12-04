@@ -6,7 +6,8 @@
   "scripts": {
     "qa": "npx cypress run --env = qa --browser ${BROWSER}",
     "dev": "npx cypress run --env = dev --browser ${BROWSER}",
-    "combine:report": "mochawesome-merge --reportDir cypress/reports/mocha > cypress/reports/mochareports/report.json && marge cypress/reports/mochareports/report.json -f cypress/reports/mochareports",
+    "combine:report": "mochawesome-merge ./mochawesome-report/*.json -o index.json",
+    "generate:report": "marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html",
     "cleanup": "node cleanup-report.js"
   },
   "author": "TOP99 Sharing Platform",
