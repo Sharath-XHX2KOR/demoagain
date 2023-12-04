@@ -7,8 +7,8 @@
     "qa": "npx cypress run --env = qa --browser ${BROWSER}",
     "dev": "npx cypress run --env = dev --browser ${BROWSER}",
     "runs": "npx cypress run --browser chrome",
-    "combine:report": "npx mochawesome-merge ./mochawesome-report/*.json -o index.json",
-    "generate:report": "npx mochawesome-report-generator --reportDir cypress/reports/mochawesome-report",
+    "combine:report": "npx marge ./mochawesome-report/*.json -o index.json",
+    "generate:report": "npx marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html",
     "cleanup": "node cleanup-report.js"
   },
   "author": "TOP99 Sharing Platform",
