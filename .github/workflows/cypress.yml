@@ -2,9 +2,6 @@ name: Cypress Tests
 on:
   push:
     branches:
-
-      - 'Feature/Aarohan-455' # Specify the branch name you want to trigger the workflow on
-      - 'Integration'
       - 'main'  
 jobs:
   build:
@@ -24,31 +21,20 @@ jobs:
         run: |
           docker build -t my-cypress-image -f Dockerfile --build-arg BROWSER=${{ matrix.browser }} .
           docker run --rm  \
-            -v $(pwd)/artifacts/screenshots:/Top99TestAutomation/cypress/screenshots \
-            -v $(pwd)/artifacts/videos:/Top99TestAutomation/cypress/videos \
-            -v $(pwd)/artifacts/reports:/Top99TestAutomation/cypress/reports my-cypress-image          
+            -v $(pwd)/public/screenshots:/Top99TestAutomation/cypress/screenshots \
+            -v $(pwd)/public/videos:/Top99TestAutomation/cypress/videos my-cypress-image          
         env:
           CI: true
           BROWSER: ${{ matrix.browser }}
 
-      - name: Upload Test Screenshots
-        uses: actions/upload-artifact@v2
-        if: ${{ always() }}
-        with:
-          name: cypress-results-screenshots
-          path: ./artifacts/screenshots 
+      - name: Merge test reports
+        run: npm run combine:report
 
-      - name: Upload Test videos 
-        uses: actions/upload-artifact@v2
-        if: ${{ always() }}
+      - name: Generate HTML report
+        run: npm run generate:report
+      
+      - name: Deploy report page to github pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-            name: cypress-results-videos
-            path: ./artifacts/videos          
-
-      - name: Upload Test result 
-        uses: actions/upload-artifact@v2
-        if: ${{ always() }}
-        with:
-            name: cypress-results-reports 
-            path: ./artifacts/reports
-       
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
