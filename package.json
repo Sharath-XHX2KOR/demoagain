@@ -6,8 +6,9 @@
   "scripts": {
     "qa": "npx cypress run --env = qa --browser ${BROWSER}",
     "dev": "npx cypress run --env = dev --browser ${BROWSER}",
-    "combine:report": "mochawesome-merge ./mochawesome-report/*.json -o index.json",
-    "generate:report": "marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html",
+    "runs": "npx cypress run --browser chrome",
+    "combine:report": "npx mochawesome-merge ./mochawesome-report/*.json -o index.json",
+    "generate:report": "npx marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html",
     "cleanup": "node cleanup-report.js"
   },
   "author": "TOP99 Sharing Platform",
@@ -16,8 +17,7 @@
     "cucumber-html-reporter": "^7.1.1",
     "cypress": "^12.17.4",
     "cypress-cucumber-preprocessor": "^4.3.1",
-    "eslint-plugin-eslint-plugin": "^5.1.1",
-    "multiple-cucumber-html-reporter": "^3.4.0"
+    "eslint-plugin-eslint-plugin": "^5.1.1"
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true,
@@ -33,10 +33,9 @@
     "eslint": "^8.51.0",
     "eslint-plugin-cucumber": "^2.0.0",
     "eslint-plugin-cypress": "^2.14.0",
-    "mochawesome": "6.1.1",
+    "marge": "^1.0.1",
+    "mochawesome": "^7.1.3",
     "mochawesome-merge": "^4.3.0",
     "mochawesome-report-generator": "^6.2.0"
-    
-    
   }
 }
