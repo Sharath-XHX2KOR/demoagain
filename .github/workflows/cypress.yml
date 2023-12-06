@@ -28,7 +28,9 @@ jobs:
           BROWSER: ${{ matrix.browser }}
 
       - name: Merge test reports
-        run: npm run combine:report
+        run: |
+          npm run cy:merge
+          npm run cy:generate:html
 
       - name: Generate HTML report
         run: npm run generate:report

@@ -4,3 +4,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     return false
   })
 import './commands'
+
+// cypress/support/index.js
+import 'cypress-cucumber-preprocessor/register';
+import 'cypress-mochawesome-reporter/register';

@@ -7,6 +7,9 @@
     "qa": "npx cypress run --env = qa --browser ${BROWSER}",
     "dev": "npx cypress run --env = dev --browser ${BROWSER}",
     "runs": "npx cypress run --browser chrome",
+    "cy:report": "marge cypress/results/* --reportDir cypress/mochawesome-report",
+    "cy:merge": "mochawesome-merge cypress/results/*.json > cypress/mochawesome.json",
+    "cy:generate:html": "marge --reportDir cypress/mochawesome-report --reportTitle 'Cypress BDD Report'",
     "combine:report": "npx marge ./mochawesome-report/*.json -o index.json",
     "generate:report": "npx marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html",
     "cleanup": "node cleanup-report.js"
